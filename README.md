@@ -21,7 +21,7 @@ On Windows, check **Settings → System → About → System type** if you are u
 2. Run the commands below. Replace the filename if you downloaded the ARM64 bundle or a newer version.
 
    ```powershell
-   $archive = "open-archive-0.1.1-win-x64.tar.gz"
+   $archive = "open-archive-0.1.2-win-x64.tar.gz"
    $install = Join-Path $env:LOCALAPPDATA "OpenArchive"
    New-Item -ItemType Directory -Force -Path $install | Out-Null
    tar -xf $archive -C $install
@@ -48,7 +48,7 @@ On Windows, check **Settings → System → About → System type** if you are u
 2. Run the commands below. Replace the filename if you downloaded the Intel bundle or a newer version.
 
    ```sh
-   archive=open-archive-0.1.1-osx-arm64.tar.gz
+   archive=open-archive-0.1.2-osx-arm64.tar.gz
    install="$HOME/OpenArchive"
    mkdir -p "$install"
    tar -xf "$archive" -C "$install"
@@ -85,7 +85,17 @@ Start a new agent session and ask **“Use Open Archive MCP to list the radio pr
 
 Give your agent your Excel matrix, the target radio, and any exact frequencies supplied separately. The MCP asks for missing frequencies before generating the codeplug.
 
-The MCP reads matrices from the `matrices` subfolder and saves codeplugs to the `output` subfolder of your local profile. The profile is `%USERPROFILE%\.open-archive` on Windows and `~/.open-archive` on Mac. Follow `INSTALL.md` to set your local Wi-Fi credentials for event builds.
+The MCP reads matrices from the `matrices` subfolder and saves codeplugs to the `output` subfolder of your local profile. The profile is `%USERPROFILE%\.open-archive` on Windows and `~/.open-archive` on Mac.
+
+## Wi-Fi defaults
+
+Save your Wi-Fi password once in `event-defaults.json` in your local profile. Keep this file private to your account.
+
+```json
+{"wifi":{"password":"replace-with-your-password"}}
+```
+
+The default SSID is `MOTOTRBO`. For a different default, add `ssid` inside `wifi`. You can also supply an override for a single build. If the password is missing, the MCP asks for it before generating a codeplug.
 
 ## Optional review and programming
 
