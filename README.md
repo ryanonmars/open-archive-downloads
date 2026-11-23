@@ -21,7 +21,7 @@ On Windows, check **Settings → System → About → System type** if you are u
 2. Run the commands below. Replace the filename if you downloaded the ARM64 bundle or a newer version.
 
    ```powershell
-   $archive = "open-archive-0.1.0-win-x64.tar.gz"
+   $archive = "open-archive-0.1.1-win-x64.tar.gz"
    $install = Join-Path $env:LOCALAPPDATA "OpenArchive"
    New-Item -ItemType Directory -Force -Path $install | Out-Null
    tar -xf $archive -C $install
@@ -48,7 +48,7 @@ On Windows, check **Settings → System → About → System type** if you are u
 2. Run the commands below. Replace the filename if you downloaded the Intel bundle or a newer version.
 
    ```sh
-   archive=open-archive-0.1.0-osx-arm64.tar.gz
+   archive=open-archive-0.1.1-osx-arm64.tar.gz
    install="$HOME/OpenArchive"
    mkdir -p "$install"
    tar -xf "$archive" -C "$install"
@@ -73,8 +73,20 @@ On Windows, check **Settings → System → About → System type** if you are u
 
 Open `INSTALL.md` in the extracted bundle for an example `mcpServers` configuration for Qwen Code and other local stdio MCP clients. Use absolute paths to the executable and arguments in the extracted bundle.
 
+## Update an existing install
+
+Extract the new bundle into your OpenArchive installation folder. Point your existing `open_archive` server entry at the new version’s executable and arguments using the paths above. Restart your MCP client. Keep your local `.open-archive` profile for matrices, outputs, and settings.
+
 ## Test your install
 
 Start a new agent session and ask **“Use Open Archive MCP to list the radio profiles.”** Both the R7 UHF and XPR 7550e UHF profiles should appear.
 
-The MCP reads matrices from the `matrices` subfolder and saves codeplugs to the `output` subfolder of your local profile. The profile is `%USERPROFILE%\.open-archive` on Windows and `~/.open-archive` on Mac. Follow `INSTALL.md` to set your local Wi-Fi credentials for event builds. You can open the generated files in Motorola CPS to review and write them to the radio.
+## Build a codeplug
+
+Give your agent your Excel matrix, the target radio, and any exact frequencies supplied separately. The MCP asks for missing frequencies before generating the codeplug.
+
+The MCP reads matrices from the `matrices` subfolder and saves codeplugs to the `output` subfolder of your local profile. The profile is `%USERPROFILE%\.open-archive` on Windows and `~/.open-archive` on Mac. Follow `INSTALL.md` to set your local Wi-Fi credentials for event builds.
+
+## Optional review and programming
+
+Open a finished codeplug in Motorola CPS if you want to review it there or write it to a radio through CPS.
